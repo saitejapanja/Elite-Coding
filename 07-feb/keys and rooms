@@ -1,0 +1,19 @@
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        HashSet<Integer> set = new HashSet<>();
+
+        set.add(0);
+        
+        helper(rooms,set,0);
+        return set.size()==rooms.size();
+    }
+
+    public void helper(List<List<Integer>> rooms, HashSet<Integer> set, int source){
+        for(int neigh:rooms.get(source)){
+            if(!set.contains(neigh)){
+                set.add(neigh);
+                helper(rooms,set,neigh);
+            }
+        }
+    }
+}
